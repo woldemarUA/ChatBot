@@ -1,0 +1,36 @@
+services:
+  mind:
+    build: ./mind
+    depends_on:
+      - vStore
+    volumes:
+      - ${PROJECT_PATH}/mind:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 3000:3000
+    environment:
+      ELASTIC_URL: ${ELASTIC_URL}
+      ELASTIC_USERNAME: ${ELASTIC_USERNAME}
+      ELASTIC_PASSWORD: ${ELASTIC_PASSWORD} 
+      ROOT_DIRECTORY: /usr/src/app     
+    networks:
+      - chatBot
+  vStore:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.2
+    environment: 
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms4g -Xmx4g  # Allocate 4GB to the JVM heap
+    mem_limit: 8g
+    volumes:
+      - vStore:/usr/share/elasticsearch/data
+    networks:
+      - chatBot
+# ./elasticsearch-setup-passwords auto
+# ./elasticsearch-setup-passwords interactive 
+networks:
+  chatBot:
+    name: chatBot
+    driver: bridge
+volumes:
+  vStore:
+  
