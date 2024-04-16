@@ -1,7 +1,7 @@
 import { OpenAIEmbeddings } from '@langchain/openai';
 import { ElasticVectorSearch } from '@langchain/community/vectorstores/elasticsearch';
 
-import client from './elastic/elasticClient.js';
+import client from '../elastic/elasticClient.js';
 /**
  * Fonction pour créer et configurer le magasin de vecteurs. Cette fonction est conçue pour utiliser Elasticsearch comme backend et configure spécifiquement un index dans Elasticsearch pour stocker les embeddings vectoriels générés par les modèles d'OpenAI.
  * @param {string} indexName - Le nom de l'index Elasticsearch à créer ou à utiliser.
@@ -13,7 +13,7 @@ import client from './elastic/elasticClient.js';
 
 async function createVectorStore(indexName) {
   const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-  console.log(OPENAI_API_KEY);
+
   try {
     const response = await client.cat.indices({ format: 'json' });
     const indices = response.map((index) => index.index);

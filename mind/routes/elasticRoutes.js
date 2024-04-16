@@ -19,7 +19,7 @@ router.get('/documents/:indexName', async (req, res) => {
       },
     });
 
-    let documents = response.hits.hits.map((hit) => hit._id);
+    let documents = response.hits.hits.map((hit) => hit);
 
     res.status(200).json(documents);
   } catch (err) {

@@ -21,9 +21,9 @@ yarn.lock
 
 # Docker
 ## General
-docker-compose.yml
-docker-compose.*.yml
-Dockerfile
+# docker-compose.yml
+# docker-compose.*.yml
+# Dockerfile
 .env
 .env.*
 

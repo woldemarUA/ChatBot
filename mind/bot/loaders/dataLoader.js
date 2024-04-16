@@ -10,11 +10,9 @@ import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
  * @returns {Promise<Document[]>} Une promesse qui se résout avec un tableau d'instances de Document, chaque instance représentant une partie du texte divisé.
  * @throws {Error} Lance une erreur si le chargement ou la division des documents échoue.
  */
-export async function dataLoader() {
+export async function dataLoader(file) {
   try {
-    const loader = new TextLoader(
-      `${process.env.ROOT_DIRECTORY}/uploads/scrimba.txt`
-    );
+    const loader = new TextLoader(`${process.env.ROOT_DIRECTORY}${file}`);
 
     const splitter = splitDoc(500, 50);
 

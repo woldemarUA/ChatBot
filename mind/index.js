@@ -6,8 +6,7 @@ import { createServer } from 'http';
 import cors from 'cors';
 
 import elasticRoutes from './routes/elasticRoutes.js';
-import { dataLoader } from './bot/loaders/dataLoader.js';
-
+import { main } from './bot/botIndex.js';
 const PORT = process.env.PORT;
 
 const app = express();
@@ -22,7 +21,7 @@ app.use('/elastic', elasticRoutes);
 
 app.get('/', async (req, res) => {
   try {
-    const response = await dataLoader();
+    const response = await main();
 
     res.status(200).json({ msg: response });
   } catch (err) {

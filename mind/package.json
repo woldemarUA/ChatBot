@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@elastic/elasticsearch": "^8.13.1",
+    "@langchain/core": "^0.1.57",
     "@langchain/openai": "^0.0.26",
     "cheerio": "^1.0.0-rc.12",
     "cors": "^2.8.5",
