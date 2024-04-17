@@ -19,6 +19,21 @@ const server = createServer(app);
 
 app.use('/elastic', elasticRoutes);
 
+app.post('/', async (req, res) => {
+  try {
+    console.log(req.body.msg.msg);
+    // What are the technical requirements for running Scrimba? I only have a very old laptop which is not that powerful
+    // const response = { from: 'ai', msg: req.body.msg.msg };
+    const aiReply = req.body.msg.msg;
+    // const aiReply = await main(req.body.msg.msg);
+    const response = { from: 'ai', msg: aiReply };
+    res.status(200).json(response);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json(err);
+  }
+});
+
 app.get('/', async (req, res) => {
   try {
     const response = await main();

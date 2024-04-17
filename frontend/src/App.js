@@ -1,7 +1,13 @@
 import Chat from './components/Chat';
 
+import AppContextProvider from './context/AppContextProvider';
+
 function App() {
-  return <Chat />;
+  return (
+    <AppContextProvider>
+      <Chat />
+    </AppContextProvider>
+  );
 }
 
 export default App;

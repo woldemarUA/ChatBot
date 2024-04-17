@@ -13,7 +13,7 @@ import {
   RunnableSequence,
 } from '@langchain/core/runnables';
 
-export async function main() {
+export async function main(msg) {
   try {
     const llm = openAiChat();
     const vectorStore = await createVectorStore('chatbot');
@@ -50,8 +50,8 @@ export async function main() {
     ]);
     const response = chain.invoke({
       prompt:
-        'What are the technical requirements for running Scrimba? I only have a very old laptop which is not that powerful.',
-      // 'What is the method of the education',
+        // 'What are the technical requirements for running Scrimba? I only have a very old laptop which is not that powerful.',
+        msg,
     });
 
     return response;
