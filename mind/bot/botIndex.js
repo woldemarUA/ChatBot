@@ -13,8 +13,9 @@ import {
   RunnableSequence,
 } from '@langchain/core/runnables';
 
-export async function main(msg) {
+export async function main(discussion) {
   try {
+    const { msg, convHistory } = discussion;
     const llm = openAiChat();
     const vectorStore = await createVectorStore('chatbot');
     const retriever = vectorStore.asRetriever();
@@ -45,13 +46,16 @@ export async function main(msg) {
       {
         context: retrieverChain,
         question: ({ originalInput }) => originalInput.prompt,
+        convHistory: ({ originalInput }) => {
+          console.log(originalInput.convHistory);
+          return originalInput.convHistory;
+        },
       },
       answerChain,
     ]);
     const response = chain.invoke({
-      prompt:
-        // 'What are the technical requirements for running Scrimba? I only have a very old laptop which is not that powerful.',
-        msg,
+      prompt: msg,
+      convHistory,
     });
 
     return response;

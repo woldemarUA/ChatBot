@@ -1,8 +1,6 @@
 import React from 'react';
 
 const ChatMessage = ({ message }) => {
-  console.log(message);
-
   if (message.from === 'ai') {
     return (
       <div className='row'>

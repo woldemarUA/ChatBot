@@ -13,7 +13,7 @@ function ChatInput() {
 
   const handleChange = (e) => {
     const msg = e.target.value;
-    setMesage({ from: 'human', msg, className: 'my-2 ms-auto' });
+    setMesage({ from: 'human', msg });
   };
 
   const handleSubmit = async (e) => {
